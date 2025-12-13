@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		//* File Layout
+		"rootDir": "./src",
+		"outDir": "./dist",
+		//* Environment Settings
+		"module": "esnext",
+		"target": "esnext",
+		//* For nodejs:
+		"lib": ["esnext"],
+		"types": ["node"],
+		//* Stricter Typechecking Options
+		"noUncheckedIndexedAccess": false,
+		"exactOptionalPropertyTypes": true,
+		//* Style Options
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noPropertyAccessFromIndexSignature": false,
+		//* Recommended Options
+		"strict": true,
+		"isolatedModules": true,
+		"noUncheckedSideEffectImports": true,
+		"moduleResolution": "bundler",
+		"moduleDetection": "force",
+		"skipLibCheck": true
+	}
+}
