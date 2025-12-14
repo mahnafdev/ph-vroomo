@@ -21,9 +21,14 @@ const updateUser = async (userId: number, payload: Record<string, any>) => {
 	return result.rows[0];
 };
 
+const deleteUser = async (userId: number) => {
+	await db.query("DELETE FROM users WHERE id = $1", [userId]);
+};
+
 const usersService = {
 	fetchUsers,
 	updateUser,
+	deleteUser,
 };
 
 export default usersService;

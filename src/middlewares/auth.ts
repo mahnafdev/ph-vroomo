@@ -5,8 +5,14 @@ import { db } from "../database";
 
 const auth = (...roles: ("admin" | "customer")[]) => {
 	return async (req: Request, _res: Response, next: NextFunction) => {
-		// Get authorization token
-		const token = req.headers.authorization?.split(" ")[1];
+		// Get authorization header
+		const authHeader = req.headers.authorization;
+		// If no auth header
+		if (!authHeader) throw new Error("User not authorized");
+		// If invalid token
+		if (!authHeader?.startsWith("Bearer ")) throw new Error("Invalid token");
+		// Get token
+		const token = authHeader?.split(" ")[1];
 		// If no token
 		if (!token) throw new Error("User not authorized");
 		// Decode token to obtain payload

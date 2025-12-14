@@ -52,10 +52,31 @@ const updateOne = async (req: Request, res: Response) => {
 		});
 	}
 };
+const deleteOne = async (req: Request, res: Response) => {
+	try {
+		// User Id
+		const { userId } = req.params;
+		// Nuts and bolts
+		await usersService.deleteUser(Number(userId));
+		// Send 200 response
+		res.status(200).json({
+			success: true,
+			message: "User deleted successfully",
+		});
+	} catch (error: any) {
+		// Send 500 response
+		return res.status(500).json({
+			success: false,
+			message: error.message,
+			error,
+		});
+	}
+};
 
 const usersController = {
 	getAll,
 	updateOne,
+	deleteOne,
 };
 
 export default usersController;
