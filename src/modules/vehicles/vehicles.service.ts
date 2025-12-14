@@ -13,8 +13,16 @@ const createVehicle = async (payload: Record<string, any>) => {
 	return result.rows[0];
 };
 
+const fetchVehicles = async () => {
+	// Fetch vehicles from DB
+	const result = await db.query("SELECT * FROM vehicles;");
+	// Return result
+	return result.rows;
+};
+
 const vehiclesService = {
 	createVehicle,
+	fetchVehicles,
 };
 
 export default vehiclesService;
