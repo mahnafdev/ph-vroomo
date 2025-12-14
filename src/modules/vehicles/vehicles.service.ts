@@ -41,11 +41,16 @@ const updateVehicle = async (vehicleId: number, payload: Record<string, any>) =>
 	return result.rows[0];
 };
 
+const deleteVehicle = async (id: number) => {
+	await db.query("DELETE FROM vehicles WHERE id = $1", [id]);
+};
+
 const vehiclesService = {
 	createVehicle,
 	fetchVehicles,
 	fetchVehicleById,
 	updateVehicle,
+	deleteVehicle,
 };
 
 export default vehiclesService;
