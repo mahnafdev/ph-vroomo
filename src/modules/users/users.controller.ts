@@ -3,7 +3,7 @@ import usersService from "./users.service";
 
 const getAll = async (_req: Request, res: Response) => {
 	try {
-		// The nuts and bolts
+		// Nuts and bolts
 		const users = await usersService.fetchUsers();
 		// Send 200 response
 		return res.status(200).json({
