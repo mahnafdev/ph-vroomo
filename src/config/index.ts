@@ -7,8 +7,9 @@ configDotEnv({
 });
 
 //* Accessible config data
-const config: { dbConnection: string } = {
+const config: { dbConnection: string; jwtSecret: string } = {
 	dbConnection: process.env.DB_CONNECTION!,
+	jwtSecret: process.env.JWT_SECRET!,
 };
 
 export default config;
