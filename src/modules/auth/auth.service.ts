@@ -57,9 +57,9 @@ const loginUser = async (payload: Record<string, any>) => {
 	};
 };
 
-const authServices = {
+const authService = {
 	signupUser,
 	loginUser,
 };
 
-export default authServices;
+export default authService;

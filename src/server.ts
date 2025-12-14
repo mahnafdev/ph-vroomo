@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import { createTables } from "./database";
 import authRoutes from "./modules/auth/auth.routes";
+import usersRoutes from "./modules/users/users.routes";
 
 const app = express();
 const port = 8080;
@@ -13,6 +14,7 @@ createTables();
 
 //* API Modules
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/users", usersRoutes);
 
 //* GET /
 app.get("/", (_req: Request, res: Response) => {

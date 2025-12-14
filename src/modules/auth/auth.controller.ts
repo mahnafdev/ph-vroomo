@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import authServices from "./auth.service";
+import authService from "./auth.service";
 
 const signup = async (req: Request, res: Response) => {
 	try {
 		// Signup logic
-		const result = await authServices.signupUser(req.body);
+		const result = await authService.signupUser(req.body);
 		// Send 201 response
 		return res.status(201).json({
 			success: true,
@@ -24,7 +24,7 @@ const signup = async (req: Request, res: Response) => {
 const login = async (req: Request, res: Response) => {
 	try {
 		// Login logic
-		const result = await authServices.loginUser(req.body);
+		const result = await authService.loginUser(req.body);
 		// Send 200 response
 		return res.status(200).json({
 			success: true,
