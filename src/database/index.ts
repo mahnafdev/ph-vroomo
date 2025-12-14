@@ -34,7 +34,7 @@ const createTables = async () => {
             customer_id INT REFERENCES users(id),
             vehicle_id INT REFERENCES vehicles(id),
             rent_start_date DATE NOT NULL,
-            rent_end_date DATE NOT NULL,
+            rent_end_date DATE NOT NULL CHECK (rent_end_date > rent_start_date),
             total_price INT NOT NULL CHECK (total_price >= 0),
             status VARCHAR(15) DEFAULT 'active' CHECK (status IN ('active', 'cancelled', 'returned'))
         );
