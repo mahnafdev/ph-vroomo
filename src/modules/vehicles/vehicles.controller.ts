@@ -41,9 +41,32 @@ const getAll = async (_req: Request, res: Response) => {
 	}
 };
 
+const getOne = async (req: Request, res: Response) => {
+	try {
+		// Vehicle Id
+		const { vehicleId } = req.params;
+		// Nuts and bolts
+		const vehicle = await vehiclesService.fetchVehicleById(Number(vehicleId));
+		// Send 200 response
+		return res.status(200).json({
+			success: true,
+			message: "Vehicle retrieved successfully",
+			data: vehicle,
+		});
+	} catch (error: any) {
+		// Send 500 response
+		return res.status(500).json({
+			success: false,
+			message: error.message,
+			error,
+		});
+	}
+};
+
 const vehiclesController = {
 	createOne,
 	getAll,
+	getOne,
 };
 
 export default vehiclesController;

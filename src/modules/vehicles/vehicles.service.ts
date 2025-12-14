@@ -20,9 +20,17 @@ const fetchVehicles = async () => {
 	return result.rows;
 };
 
+const fetchVehicleById = async (id: number) => {
+	// Fetch vehicle from DB
+	const result = await db.query("SELECT * FROM vehicles WHERE id = $1;", [id]);
+	// Return result
+	return result.rows[0];
+};
+
 const vehiclesService = {
 	createVehicle,
 	fetchVehicles,
+	fetchVehicleById,
 };
 
 export default vehiclesService;
