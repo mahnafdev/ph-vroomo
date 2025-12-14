@@ -47,9 +47,37 @@ const getAll = async (req: Request, res: Response) => {
 	}
 };
 
+const updateOne = async (req: Request, res: Response) => {
+	try {
+		// Booking Id
+		const { bookingId } = req.params;
+		// New status
+		const { status } = req.body;
+		// Nuts and bolts
+		const result = await bookingsService.updateBooking(Number(bookingId), status, {
+			id: req.user!.id,
+			role: req.user!.role,
+		});
+		// Send 200 response
+		res.status(200).json({
+			success: true,
+			message: result?.message,
+			data: result?.data,
+		});
+	} catch (error: any) {
+		// Send 500 response
+		res.status(500).json({
+			success: true,
+			message: error.message,
+			error,
+		});
+	}
+};
+
 const bookingsController = {
 	createOne,
 	getAll,
+	updateOne,
 };
 
 export default bookingsController;
