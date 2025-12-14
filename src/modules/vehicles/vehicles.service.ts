@@ -27,10 +27,25 @@ const fetchVehicleById = async (id: number) => {
 	return result.rows[0];
 };
 
+const updateVehicle = async (vehicleId: number, payload: Record<string, any>) => {
+	// Fields to update
+	const fields = Object.keys(payload).map((k, i) => `${k} = $${i + 1}`);
+	// Update vehicle in DB
+	const result = await db.query(
+		`UPDATE vehicles SET ${fields.join(", ")} WHERE id = $${
+			fields.length + 1
+		} RETURNING *;`,
+		[...Object.values(payload), vehicleId],
+	);
+	// Return result
+	return result.rows[0];
+};
+
 const vehiclesService = {
 	createVehicle,
 	fetchVehicles,
 	fetchVehicleById,
+	updateVehicle,
 };
 
 export default vehiclesService;
