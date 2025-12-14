@@ -26,8 +26,28 @@ const createBooking = async (payload: Record<string, any>) => {
 	return result.rows[0];
 };
 
+const fetchBookings = async (currUser: { id: number; role: "admin" | "customer" }) => {
+	let result;
+	// Admin view
+	if (currUser.role === "admin") {
+		// Fetch all bookings
+		result = await db.query("SELECT * FROM bookings;");
+	}
+	// Customer view
+	else if (currUser.role === "customer") {
+		// Fetch own bookings
+		result = await db.query(
+			`SELECT id, vehicle_id, rent_start_date, rent_end_date, total_price, status FROM bookings WHERE customer_id = $1;`,
+			[currUser.id],
+		);
+	}
+	// Return result
+	return result?.rows;
+};
+
 const bookingsService = {
 	createBooking,
+	fetchBookings,
 };
 
 export default bookingsService;

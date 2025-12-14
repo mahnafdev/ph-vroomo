@@ -21,8 +21,35 @@ const createOne = async (req: Request, res: Response) => {
 	}
 };
 
+const getAll = async (req: Request, res: Response) => {
+	try {
+		// Nuts and bolts
+		const bookings = await bookingsService.fetchBookings({
+			id: req.user?.id,
+			role: req.user?.role,
+		});
+		// Send 201 response
+		return res.status(201).json({
+			success: true,
+			message:
+				req.user?.role === "admin"
+					? "Bookings retrieved successfully"
+					: "Your bookings retrieved successfully",
+			data: bookings,
+		});
+	} catch (error: any) {
+		// Send 500 response
+		return res.status(500).json({
+			success: false,
+			message: error.message,
+			error,
+		});
+	}
+};
+
 const bookingsController = {
 	createOne,
+	getAll,
 };
 
 export default bookingsController;
