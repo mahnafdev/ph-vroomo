@@ -1,7 +1,7 @@
 import { compare as comparePw, hash } from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { db } from "../../database";
-import config from "../../config";
+import { db } from "../../database/index";
+import config from "../../config/index";
 
 const signupUser = async (payload: Record<string, any>) => {
 	// Destructure payload

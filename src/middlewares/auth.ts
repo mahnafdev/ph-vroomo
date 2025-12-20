@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import config from "../config";
-import { db } from "../database";
+import config from "../config/index";
+import { db } from "../database/index";
 
 const auth = (...roles: ("admin" | "customer")[]) => {
 	return async (req: Request, _res: Response, next: NextFunction) => {

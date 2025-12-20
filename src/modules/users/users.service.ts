@@ -1,4 +1,4 @@
-import { db } from "../../database";
+import { db } from "../../database/index";
 
 const fetchUsers = async () => {
 	// Fetch users from DB

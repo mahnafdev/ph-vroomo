@@ -1,4 +1,4 @@
-import { db } from "../../database";
+import { db } from "../../database/index";
 
 const createVehicle = async (payload: Record<string, any>) => {
 	// Destructure payload

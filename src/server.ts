@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import { createTables } from "./database";
+import { createTables } from "./database/index";
 import authRoutes from "./modules/auth/auth.routes";
 import usersRoutes from "./modules/users/users.routes";
 import vehiclesRoutes from "./modules/vehicles/vehicles.routes";
